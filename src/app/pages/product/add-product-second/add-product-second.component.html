@@ -1,0 +1,833 @@
+<form class="account-details" #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="account-details-parent">
+      <div class="account-details-main">
+        <div class="account-details-main-title">
+          <h1>{{ id ? "Edit Ads" : "Add Ads" }}</h1>
+        </div>
+        <!-- END! login-form-title -->
+
+        <div class="account-details-main-child">
+          <div class="select-form">
+            <div class="select-type">
+              <div class="form-input-select">
+                <label for="">Annoncer type</label>
+                <div class="select-main">
+                  <select #adType (change)="onTypeChange(adType.value)" formControlName="type">
+                    <option value="null">Select from the list...</option>
+                    <option *ngFor="let data of types" [value]="data?._id">
+                      {{ data?.name }}
+                    </option>
+                  </select>
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('type')?.touched &&
+                    dataForm.get('type')?.invalid
+                  ">This field is required</span>
+              </div>
+            </div>
+
+            <!-- *ngIf="onSelectedType && showCreate" -->
+            <div class="select-type" *ngIf="onSelectedType && showCreate">
+              <div class="form-input-select">
+                <label for="">Category</label>
+                <div class="select-main">
+                  <select #adType1 (change)="onCategoryChange(adType1.value)" formControlName="category">
+                    <option value="null">Select Category</option>
+                    <option *ngFor="let data of categorys" [value]="data?._id">
+                      {{ data?.name }}
+                    </option>
+                  </select>
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('category')?.touched &&
+                    dataForm.get('category')?.invalid
+                  ">This field is required</span>
+              </div>
+            </div>
+
+            <!-- <mat-card class="content-sidebar content-sidebar-2"> -->
+            <div class="title">
+              <h4>Tag</h4>
+            </div>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select Tags</mat-label>
+              <mat-select formControlName="tags" multiple>
+                <mat-option *ngFor="let data of tags" [value]="data._id">
+                  {{ data.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+            <!-- </mat-card> -->
+            <!-- END CONTENT SIDEBAR 2 -->
+          </div>
+
+          <div>
+            <div class="select-type select-type-create-second">
+              <div class="gap" style="margin-top: 30px"></div>
+              <div class="form-input-select">
+                <label for="the_name">Name/Title</label>
+                <div class="input-main">
+                  <input type="text" id="the_name"
+                    placeholder="ex. Monica, please use max 18 digits for the best ad visibilty" formControlName="name"
+                    required />
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('name')?.touched &&
+                    dataForm.get('name')?.invalid
+                  ">This field is required</span>
+              </div>
+              <!-- <div class="form-input-select">
+                <label for="the_title">Title</label>
+                <div class="input-main">
+                  <input
+                    type="text"
+                    id="the_title"
+                    placeholder="ex. Monica, please use max 18 digits for the best ad visibilty"
+                    formControlName="title"
+                    required
+                  />
+                </div>
+                <span
+                  class="invalid-txt"
+                  *ngIf="
+                    dataForm?.get('title')?.touched &&
+                    dataForm.get('title')?.invalid
+                  "
+                  >This field is required</span
+                >
+              </div> -->
+
+              <!-- region -->
+              <div class="form-input-select">
+                <label for="">Region</label>
+                <div class="select-main">
+                  <select (change)="onChangeRegion($event)" formControlName="division" required>
+                    <option value="null">Pick a region...</option>
+                    <option [value]="d?._id" *ngFor="let d of divisions">
+                      {{ d?.name }}
+                    </option>
+                  </select>
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('region')?.touched &&
+                    dataForm.get('region')?.invalid
+                  ">This field is required</span>
+              </div>
+
+              <div class="form-input-select">
+                <label for="">Area</label>
+                <div class="select-main">
+                  <select (change)="onChangeArea($event)" formControlName="area" required>
+                    <option value="null">Pick a area...</option>
+                    <option [value]="a?._id" *ngFor="let a of area">{{a?.name}}</option>
+                  </select>
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('area')?.touched &&
+                    dataForm.get('area')?.invalid
+                  ">This field is required</span>
+              </div>
+
+
+              <div class="form-input-select">
+                <label for="">City</label>
+                <div class="select-main">
+                  <select formControlName="zone" required>
+                    <option value="null">Pick a city...</option>
+                    <option [value]="z?._id" *ngFor="let z of zone">{{z?.name}}</option>
+                  </select>
+                </div>
+                <span class="invalid-txt" *ngIf="
+                    dataForm?.get('zone')?.touched &&
+                    dataForm.get('zone')?.invalid
+                  ">This field is required</span>
+              </div>
+
+              <div class="form-input-select">
+                <label for="ad-content">Ad Content</label>
+                <div class="input-main">
+                  <textarea name="" formControlName="shortDescription" id="ad-content" cols="30" rows="14"
+                    placeholder="Enter text"></textarea>
+                </div>
+
+                <div style="max-width: 278px !important; ">
+                  <div class="title">
+                    <h4>Tag</h4>
+                  </div>
+
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Select Tags</mat-label>
+                    <mat-select formControlName="tags" multiple>
+                      <mat-option *ngFor="let data of tags" [value]="data._id">
+                        {{ data.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error>This field is required.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="more-content">
+                <h3>More Info</h3>
+
+
+
+                <div class="more-content-grid-view">
+                  <div class="form-input-select">
+                    <label for="Height">Height</label>
+                    <div class="input-main">
+                      <input type="text" id="Height" placeholder="Indast din højde i cm" formControlName="height"
+                        required />
+                    </div>
+                    <span class="invalid-txt" *ngIf="
+                        dataForm?.get('height')?.touched &&
+                        dataForm.get('height')?.invalid
+                      ">This field is required</span>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Hair-color">Hair color</label>
+                    <div class="select-main">
+                      <select id="Hair-color" formControlName="hairColor">
+                        <option value="null">Select from the list</option>
+                        <option *ngFor="let data of hairColors" [value]="data?._id">
+                          {{ data.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Weight">Weight </label>
+                    <div class="input-main">
+                      <input type="text" id="Weight" placeholder="Indast kg" formControlName="weight" />
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Intimate-hair">Intimate hair</label>
+                    <div class="select-main">
+                      <select id="Intimate-hair" formControlName="intimateHair">
+                        <option value="null">Select from the list</option>
+                        <option *ngFor="let data of intimateHairs" [value]="data?._id">
+                          {{ data?.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Body_type">Body type </label>
+                    <div class="select-main">
+                      <select id="Body_type" formControlName="bodyType">
+                        <option value="null">Select from the list</option>
+                        <option *ngFor="let data of bodyTypes" [value]="data?._id">
+                          {{ data?.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-input-select form-input-select-rad">
+                    <p>Running out</p>
+                    <div class="input-radio input-radio-running">
+                      <div class="input-radio-child">
+                        <input type="radio" id="Yes" value="Yes" formControlName="runningOut" />
+                        <label for="Yes">Ja</label>
+                      </div>
+
+                      <div class="input-radio-child">
+                        <input type="radio" id="no" value="No" formControlName="runningOut" />
+                        <label for="no">Kun hoteller</label>
+                      </div>
+
+                      <div class="input-radio-child">
+                        <input type="radio" id="hotels" value="Hotels Only" formControlName="runningOut" />
+                        <label for="hotels">Nej</label>
+                      </div>
+
+                      <div class="input-radio-child">
+                        <input type="radio" id="own" value="Has own place only" formControlName="runningOut" />
+                        <label for="own">Har eget sted</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Orientation">Orientation</label>
+                    <div class="select-main">
+                      <select id="Orientation" formControlName="orientation">
+                        <option value="null">Select from the list</option>
+                        <option *ngFor="let data of orientations" [value]="data?._id">
+                          {{ data?.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Age">Age(will be shown in preview)</label>
+                    <div class="input-main">
+                      <input type="number" min="18" id="Age" placeholder="18-100" formControlName="age" required />
+                    </div>
+                    <span class="invalid-txt" *ngIf="
+                        dataForm?.get('age')?.touched &&
+                        dataForm.get('age')?.invalid
+                      ">This field is required</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="more-content">
+                <h3>Kontakt informationer</h3>
+
+                <div class="more-content-grid-view">
+                  <div class="form-input-select">
+                    <label for="Telephone">Telephone</label>
+                    <div class="input-main">
+                      <input type="text" id="Telephone" placeholder="Enter Telephone" formControlName="phone" />
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="address">Address</label>
+                    <div class="input-main">
+                      <input type="text" id="address" placeholder="Enter text" formControlName="address" />
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="Whatsapp_number">Whatsapp number</label>
+                    <div class="input-main">
+                      <input type="text" id="Whatsapp_number" placeholder="Enter text" formControlName="whatsApp" />
+                    </div>
+                  </div>
+
+                  <div class="form-input-select"></div>
+
+                  <div class="form-input-select">
+                    <label for="email">Email</label>
+                    <div class="input-main">
+                      <input type="email" id="email" placeholder="Enter text" formControlName="email" />
+                    </div>
+                  </div>
+
+                  <div class="form-input-select">
+                    <label for="website">Your Website </label>
+                    <div class="input-main">
+                      <input type="text" id="website" placeholder="PREMIUM USERS ONLY" formControlName="email" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="more-content">
+                <h3>Pictures</h3>
+
+                <div class="select-type select-type-drop">
+                  <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                    <ngx-dropzone-label>
+                      <div class="label">
+                        <h1>Drop filer her for at tilfoje dem.</h1>
+                        <button type="button">Browser filer</button>
+                      </div>
+                    </ngx-dropzone-label>
+
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                      [removable]="true" (removed)="onRemove(f)">
+                    </ngx-dropzone-image-preview>
+                  </div>
+
+                  <p class="dp">Image maximum size 10 MB.</p>
+
+                  <div class="card">
+                    <div *ngFor="let image of oldImages; let i = index" class="images">
+                      <img [src]="image" class="parent-image" alt="" />
+                      <div class="hover-button">
+                        <a (click)="removeOldImage(i)"><img src="./assets/images/svg/delete.svg" style="width: 25px"
+                            alt="img" /></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="more-content more-content-opening-hours">
+              <h3>Opening Hours</h3>
+
+              <div class="opening-hours-child opening-hours-child-second">
+                <div class="checkbox-first checkbox-first-second">
+                  <div class="checkbox-main">
+                    <input id="active_opening_hours" type="checkbox" value="Yes" />
+                    <label for="active_opening_hours">Aktiv åbningstider</label>
+                  </div>
+                  <p>Indsæt dine ugentlige åbningstider</p>
+                </div>
+              </div>
+
+              <div class="days-complex">
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <label for="monday">Monday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="monday" value="true" formControlName="monday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="dataForm.value.monday ? 'block' : 'none'"
+                    class="form-input-select from-input-select-create">
+                    <div class="form-check form-check-create">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="mondaySlot" value="Yes" formControlName="mondaySlot" />
+                        <label for="Accepts">Ønsker du at sætte en time slot? (default hele dagen
+                          lang)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.mondaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="mondayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of mondayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('mondayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('mondayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <label for="tuesday">Tuesday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="tuesday" value="true" formControlName="tuesday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="dataForm.value.tuesday ? 'block' : 'none'"
+                    class="form-input-select from-input-select-create">
+                    <div class="form-check form-check-create">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="tuesdaySlot" value="Yes" formControlName="tuesdaySlot" />
+                        <label for="Accepts">Do you want to set an hour slot? (default all day
+                          long)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.tuesdaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="tuesdayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of tuesdayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('tuesdayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('tuesdayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <label for="wednesday">Wednesday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="wednesday" value="true" formControlName="wednesday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.wednesday ? 'block' : 'none'
+                    " class="form-input-select from-input-select-create">
+                    <div class="form-check form-check-create">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="wednesdaySlot" value="Yes" formControlName="wednesdaySlot" />
+                        <label for="Accepts">Do you want to set an hour slot? (default all day
+                          long)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.wednesdaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="wednesdayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of wednesdayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('wednesdayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('wednesdayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <label for="thursday">Thursday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="thursday" value="true" formControlName="thursday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="dataForm.value.thursday ? 'block' : 'none'"
+                    class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="thursdaySlot" value="Yes" formControlName="thursdaySlot" />
+                        <label for="Accepts">Do you want to set an hour slot? (default all day
+                          long)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.thursdaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="thursdayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of thursdayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('thursdayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('thursdayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check">
+                      <label for="friday">Friday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="friday" value="true" formControlName="friday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="dataForm.value.friday ? 'block' : 'none'"
+                    class="form-input-select from-input-select-create">
+                    <div class="form-check form-check-create">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="fridaySlot" value="Yes" formControlName="fridaySlot" />
+                        <label for="Accepts">Do you want to set an hour slot? (default all day
+                          long)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.fridaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="fridayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of fridayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('fridayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('fridayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+
+                <div class="day-item day-item-create">
+                  <div class="form-input-select from-input-select-create">
+                    <div class="form-check date-hour">
+                      <label for="saturday">Saturday</label>
+                      <div class="form-check-child">
+                        <input type="checkbox" id="saturday" value="true" formControlName="saturday" />
+                        <label for="Accepts">Åbent</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="dataForm.value.saturday ? 'block' : 'none'"
+                    class="form-input-select from-input-select-create">
+                    <div class="form-check form-check-create">
+                      <div></div>
+
+                      <div class="form-check-child">
+                        <input type="checkbox" id="saturdaySlot" value="Yes" formControlName="saturdaySlot" />
+                        <label for="Accepts">Do you want to set an hour slot? (default all day
+                          long)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div [style.display]="
+                      dataForm.value.saturdaySlot ? 'grid' : 'none'
+                    " class="form-array-container form-array-container-create">
+                    <div></div>
+
+                    <div formArrayName="saturdayHours" class="form-array-input">
+                      <div class="single-field single-field-create" *ngFor="
+                          let data of saturdayHoursArray?.controls;
+                          let i = index;
+                          let last = last
+                        " [formGroupName]="i">
+                        <div class="form-input-select time-picker">
+                          <label for="startHour">Start</label>
+                          <div class="input-main">
+                            <input type="time" id="startHour" placeholder="Enter kg" formControlName="startHour" />
+                          </div>
+                        </div>
+
+                        <div class="form-input-select time-picker">
+                          <label for="endHour">End</label>
+                          <div class="input-main">
+                            <input type="time" id="endHour" placeholder="Enter kg" formControlName="endHour" />
+                          </div>
+                        </div>
+
+                        <button *ngIf="!last" type="button" mat-mini-fab color="warn"
+                          (click)="removeFormArrayField('saturdayHours', i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        <button *ngIf="last" type="button" mat-mini-fab color="primary"
+                          (click)="onAddNewFormArrayObject('saturdayHours')">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END Day Item -->
+              </div>
+            </div>
+
+            <div class="more-content more-content-pricing">
+              <h3>Pricing</h3>
+
+              <div formArrayName="pricing">
+                <div *ngFor="let data of pricingDataArray?.controls; let i = index" [formGroupName]="i">
+                  <div>
+                    <div class="more-content-pricing-flex">
+                      <div class="form-input-select">
+                        <label for="price">Price</label>
+                        <div class="input-main">
+                          <input type="text" id="price" formControlName="priceValue" placeholder="ex.300 DKK" />
+                        </div>
+                      </div>
+                      <div class="form-input-select">
+                        <label>Timing</label>
+                        <div class="select-main">
+                          <select formControlName="timing">
+                            <option>15 min</option>
+                            <option>30 min</option>
+                            <option>1h</option>
+                            <option>Whole night</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="more-content-pricing-single">
+                      <div class="form-input-select">
+                        <label for="ServiceDescription">Service Description</label>
+                        <div class="input-main">
+                          <input type="text" id="ServiceDescription" formControlName="serviceDescription"
+                            placeholder="What do you include your service" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" mat-mini-fab color="warn" (click)="removeFormArrayField('pricing', i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="opening-hours-child">
+                <div class="checkbox-first checkbox-first-second">
+                  <div class="checkbox-main" (click)="addFormArrayObject('pricing')">
+                    <input id="active_opening_hours" type="checkbox" value="Yes" />
+                    <label for="active_opening_hours">New Pricing</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="submit-btn submit-btn-create">
+              <button type="submit">
+                {{
+                id
+                ? ("Update Data" | uppercase)
+                : ("opret Announce" | uppercase)
+                }}
+              </button>
+
+              <div class="form-check-child-two">
+                <!-- (click)="onCheckTerms()" -->
+                <!-- <input type="checkbox" id="Accepts" (click)="onCheckTerms()" />
+                <label
+                  ><span style="margin-right: 5px"
+                    >I have read to agree to the website</span
+                  >
+                  <a>Trams and condition</a></label
+                > -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END! account-details-main -->
+    </div>
+  </div>
+</form>
