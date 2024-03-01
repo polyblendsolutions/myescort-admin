@@ -16,13 +16,13 @@ import { ConfirmInputDailogComponent } from 'src/app/shared/components/ui/confir
 export class ViewVerificationComponent implements OnInit {
   
   // Store Data
-  id?: string;
-  user?: User;
+  verificationId?: string;
+  verificationData?: User;
 
     // Subscriptions
-    private subDataOne: Subscription;
-    private subDataTwo: Subscription;
-    private subRouteOne: Subscription;
+    private subVerificationData: Subscription;
+    private subVerificationUpdate: Subscription;
+    private subVerificationRoute: Subscription;
     verification: any;  
 
   constructor(
@@ -36,10 +36,10 @@ export class ViewVerificationComponent implements OnInit {
 
   ngOnInit(): void {
         // GET ID FORM PARAM
-        this.subRouteOne = this.activatedRoute.paramMap.subscribe((param) => {
-          this.id = param.get('id');
+        this.subVerificationRoute = this.activatedRoute.paramMap.subscribe((param) => {
+          this.verificationId = param.get('id');
     
-          if (this.id) {
+          if (this.verificationId) {
             this.getUserById();
           }
         });
@@ -48,7 +48,6 @@ export class ViewVerificationComponent implements OnInit {
 
   toggleModal() {
     this.showModal = !this.showModal;
-    console.log('this.showModal;', this.showModal)
   }
 
     /**
@@ -58,11 +57,11 @@ export class ViewVerificationComponent implements OnInit {
    */
     private getUserById() {
       this.spinnerService.show();
-      this.subDataOne = this.userService.getUsersById(this.id).subscribe({
+      this.subVerificationData = this.userService.getUsersById(this.verificationId).subscribe({
         next: (res) => {
           this.spinnerService.hide();
           if (res.data) {
-            this.user = res.data;
+            this.verificationData = res.data;
           }
         },
         error: (error) => {
@@ -77,7 +76,7 @@ export class ViewVerificationComponent implements OnInit {
         ...(isVerify ? {} : { comment: await this.openDialogAndGetInput() }),
       };
       if(isVerify || payload.comment){
-        this.subDataTwo = this.userService.updateUsersById(this.id, payload).subscribe({
+        this.subVerificationUpdate = this.userService.updateUsersById(this.verificationId, payload).subscribe({
           next: (res) => {
             this.spinnerService.hide();
             this.uiService.success(res.message);
@@ -113,14 +112,14 @@ export class ViewVerificationComponent implements OnInit {
    */
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subVerificationData) {
+      this.subVerificationData.unsubscribe();
     }
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.subVerificationUpdate) {
+      this.subVerificationUpdate.unsubscribe();
     }
-    if (this.subRouteOne) {
-      this.subRouteOne.unsubscribe();
+    if (this.subVerificationRoute) {
+      this.subVerificationRoute.unsubscribe();
     }
   } 
 }

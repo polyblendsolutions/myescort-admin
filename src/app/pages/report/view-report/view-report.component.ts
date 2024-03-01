@@ -18,13 +18,13 @@ import { environment } from 'src/environments/environment';
 export class ViewReportComponent implements OnInit {
   
   // Store Data
-  id?: string;
-  data: Report;
+  reportId?: string;
+  reporDetails: Report;
 
   // Subscriptions
-  private subDataOne: Subscription;
-  private subDataTwo: Subscription;
-  private subRouteOne: Subscription;
+  private subReportData: Subscription;
+  private subdeleteResponse: Subscription;
+  private subRouteReport: Subscription;
   verification: any;
 
   constructor(
@@ -39,10 +39,10 @@ export class ViewReportComponent implements OnInit {
 
   ngOnInit(): void {
     // GET ID FORM PARAM
-    this.subRouteOne = this.activatedRoute.paramMap.subscribe((param) => {
-      this.id = param.get('id');
+    this.subRouteReport = this.activatedRoute.paramMap.subscribe((param) => {
+      this.reportId = param.get('id');
 
-      if (this.id) {
+      if (this.reportId) {
         this.getReportById();
       }
     });
@@ -54,14 +54,12 @@ export class ViewReportComponent implements OnInit {
    * deleteReportById()
    */
   public openExternalUrl(): void {
-    const url = `https://${environment.domain}/ad-details/${this.data?.product}`;
+    const url = `https://${environment.domain}/ad-details/${this.reporDetails?.product}`;
     const newTab = window.open(url, '_blank');
     if (newTab) {
       newTab.focus();
     } else {
-      console.error(
-        'Unable to open new tab. Please check your browser settings.'
-      );
+      this.uiService.warn('Unable to open new tab. Please check your browser settings.');
     }
   }
 
@@ -69,7 +67,7 @@ export class ViewReportComponent implements OnInit {
     this.confirmDeletion(
       'Confirm Delete',
       'Are you sure you want to delete this Ad?',
-      this.productService.deleteProductById(this.data?.product)
+      this.productService.deleteProductById(this.reporDetails?.product)
     );
   }
   
@@ -77,7 +75,7 @@ export class ViewReportComponent implements OnInit {
     this.confirmDeletion(
       'Confirm Delete',
       'Are you sure you want to delete this Report?',
-      this.reportService.deleteReportById(this.id)
+      this.reportService.deleteReportById(this.reportId)
     );
   }
   
@@ -89,11 +87,11 @@ export class ViewReportComponent implements OnInit {
    */
   private getReportById() {
     this.spinnerService.show();
-    this.subDataOne = this.reportService.getReportById(this.id).subscribe({
+    this.subReportData = this.reportService.getReportById(this.reportId).subscribe({
       next: (res) => {
         this.spinnerService.hide();
         if (res.data) {
-          this.data = res.data;
+          this.reporDetails = res.data;
         }
       },
       error: (error) => {
@@ -112,7 +110,7 @@ export class ViewReportComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.spinnerService.show();
-        this.subDataTwo = deletionObservable.subscribe(
+        this.subdeleteResponse = deletionObservable.subscribe(
           (res) => {
             this.spinnerService.hide();
             if (res.success) {
@@ -136,14 +134,14 @@ export class ViewReportComponent implements OnInit {
    */
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subReportData) {
+      this.subReportData.unsubscribe();
     }
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.subdeleteResponse) {
+      this.subdeleteResponse.unsubscribe();
     }    
-    if (this.subRouteOne) {
-      this.subRouteOne.unsubscribe();
+    if (this.subRouteReport) {
+      this.subRouteReport.unsubscribe();
     }
   }
 }
