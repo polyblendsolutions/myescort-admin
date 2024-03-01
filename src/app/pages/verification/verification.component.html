@@ -98,7 +98,7 @@
         <th>Users</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Verfied</th>
+        <th>Status</th>
         <th>Action</th>
       </tr>
 
@@ -120,16 +120,14 @@
           <!-- <img checkImageDefault [src]="data?.profileImg"/> -->
           <img checkImageDefault class="table-image" [src]="data?.images ? data.images[0] : ''" [alt]="">
         </td>
-        <td>{{ data.username || "-" | uppercase }}</td>
-        <td>{{ data.email || "-" | uppercase }}</td>
-        <td>{{ data.phone || "-" }}</td>
+        <td>{{ data?.username || "-" | uppercase }}</td>
+        <td>{{ data?.email || "-" | uppercase }}</td>
+        <td>{{ data?.phone || "-" }}</td>
         <!--        <td *ngIf="data?.images &&  !data.isVerfied">Send Varify Request</td>-->
-        <td>{{ data?.images ? 'YES' : "NO" }}</td>
-        <!--        <td *ngIf="data?.images && data.isVerfied">{{ data.isVerfied }}</td>-->
-        <!--        <td *ngIf="!data?.images && !data.isVerfied">-</td>-->
+        <td>Pending</td>
         <td class="button">
-          <button matTooltip="Edit" mat-mini-fab color="accent" [routerLink]="['../edit-user/', data._id]">
-            <mat-icon>edit</mat-icon>
+          <button matTooltip="View" mat-mini-fab color="accent" [routerLink]="['view-verification/', data._id]">
+            <mat-icon>visibility</mat-icon>
           </button>
 
         </td>

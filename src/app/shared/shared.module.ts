@@ -8,6 +8,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {OutSideClickDirective} from './directives/out-side-click.directive';
 import { ConfirmDialogWithCheckComponent } from './components/ui/confirm-dialog-with-check/confirm-dialog-with-check.component';
 import { BodyTypeComponent } from './lazy/body-type/body-type.component';
+import { ConfirmInputDailogComponent } from './components/ui/confirm-input-dailog/confirm-input-dailog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -17,12 +21,17 @@ import { BodyTypeComponent } from './lazy/body-type/body-type.component';
     OutSideClickDirective,
     ConfirmDialogWithCheckComponent,
     BodyTypeComponent,
+    ConfirmInputDailogComponent,
   ],
   imports: [
     CommonModule,
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
+    FormsModule, 
+    ReactiveFormsModule, 
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     SnackbarNotificationComponent,

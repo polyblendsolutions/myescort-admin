@@ -1,0 +1,44 @@
+@import "/src/theme/exports/_add-from.scss";
+@import "src/theme/exports/top-data-header";
+@import "src/theme/_variables.scss";
+
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+    background-color: $submit-btn-color;
+}
+
+.verification-detail {
+    width: 90%;
+    min-height:400px ;
+    margin: 20px;
+    padding: 20px;
+    background: lightgray;
+
+    @media (min-width: 600px) {
+        width: 95%;
+    }
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+    }
+
+    @media (min-width: 900px) {
+        margin-left: 150px;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        >button:nth-child(3) {
+            margin-left: 50px;
+        }
+    }
+}

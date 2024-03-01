@@ -241,17 +241,17 @@ export const SUPER_ADMIN_MENU: AdminMenu[] = [
   {
     id: 1122,
     name: 'Verification',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'verification',
     icon: 'rate_review',
     subMenus: [
-      {
-        id: 1,
-        name: 'All Verification',
-        hasSubMenu: true,
-        routerLink: 'verification',
-        icon: 'arrow_right',
-      }
+      // {
+      //   id: 1,
+      //   name: 'All Verification',
+      //   hasSubMenu: true,
+      //   routerLink: 'verification',
+      //   icon: 'arrow_right',
+      // }
     ],
   },
 

@@ -5,7 +5,7 @@ export interface Report {
   _id?: string;
   image?: string;
   user?:User;
-  product?:Product;
+  product?:string;
   name?: string;
   reportDate: string;
   report: string;

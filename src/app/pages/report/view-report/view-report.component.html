@@ -1,0 +1,30 @@
+<section class="admin-data-sec">
+    <div class="top-data-header">
+      <div class="title">
+        <h2>View Report</h2>
+      </div>
+    </div>
+    <div class="verification-detail">
+      <!-- <h3>{{ user?.username }}</h3> -->
+     <h3>{{data?.report}}</h3>
+
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="openExternalUrl()" class="btn-submit">
+        SHOW ADD
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="['/user/edit-user/', data?.product]" class="btn-submit">
+        SHOW USER
+      </button>
+      <button mat-raised-button color="primary" (click)="deleteReportById()" class="btn-submit">
+        KEEP AD
+      </button>
+      <button mat-raised-button color="primary" (click)="deleteProductById()" class="btn-submit">
+        DELETE AD
+      </button>
+    </div>
+  </section>
+  <!-- TEMPLATE NGX SPINNER-->
+  <ngx-spinner bdColor="rgba(0,0,0,0.3)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+  </ngx-spinner>
