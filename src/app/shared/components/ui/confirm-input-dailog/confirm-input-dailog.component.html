@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Verification Reason</h1>
+<section class="from-section">
+  <div class="grid">
+    <form [formGroup]="form" class="area-border">
+      <div class="from">
+        <mat-label>Reason</mat-label>
+        <mat-form-field appearance="outline">
+          <textarea matInput formControlName="inputValue" matInput required cols="10" rows="4"></textarea>
+          <mat-error *ngIf="form.controls.inputValue.hasError('required')">
+            Input is required!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="btn">
+        <button class="btn-submit" mat-raised-button color="primary" type="button"
+          [mat-dialog-close]="form.value.inputValue" [disabled]="form.invalid">
+          Submit
+        </button>
+        <button (click)="onDismiss()" class="btn-submit color" mat-raised-button color="warn" type="button">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

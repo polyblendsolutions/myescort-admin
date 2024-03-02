@@ -1,0 +1,36 @@
+<section class="admin-data-sec">
+  <div class="top-data-header">
+    <div class="title">
+      <h2>View Verification</h2>
+    </div>
+  </div>
+  <div class="verification-detail">
+    <h3>{{ verificationData?.username }}</h3>
+    <div class="user-img" (click)="toggleModal()">
+      <img [src]="user?.images?.[0]" alt="" *ngIf="verificationData?.images?.[0]" />
+      <img src="/assets/images/placeholder/test.png" alt="" *ngIf="!verificationData?.images?.[0]" />
+    </div>
+    <div class="modal" [ngClass]="{'active': showModal}" >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <img [src]="user?.images?.[0]" alt="" *ngIf="verificationData?.images?.[0]" alt="Image">
+        <span class="close-btn" (click)="toggleModal()">&times;</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="verifyUserById(true)" class="btn-submit">
+      VERIFY
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/user/edit-user/', verificationData?._id]" class="btn-submit">
+      SHOW USER
+    </button>
+    <button mat-raised-button color="primary" (click)="verifyUserById(false)" class="btn-submit">
+      DON'T ACCEPT
+    </button>
+  </div>
+</section>
+<!-- TEMPLATE NGX SPINNER-->
+<ngx-spinner bdColor="rgba(0,0,0,0.3)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

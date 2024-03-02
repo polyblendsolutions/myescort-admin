@@ -10,6 +10,7 @@ export interface User {
   profileImg?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  username?:string;
 }
 
 export interface UserAuthResponse {

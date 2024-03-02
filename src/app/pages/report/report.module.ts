@@ -7,11 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from 'src/app/material/material.module';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { ViewReportComponent } from './view-report/view-report.component';
 
 
 @NgModule({
   declarations: [
-    AllReportComponent
+    AllReportComponent,
+    ViewReportComponent
   ],
   imports: [
     CommonModule,

@@ -17,11 +17,13 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NoContentModule} from "../../shared/lazy/no-content/no-content.module";
 import {MatButtonModule} from "@angular/material/button";
+import { ViewVerificationComponent } from './view-verification/view-verification.component';
 
 
 @NgModule({
   declarations: [
-    VerificationComponent
+    VerificationComponent,
+    ViewVerificationComponent
   ],
   imports: [
     CommonModule,

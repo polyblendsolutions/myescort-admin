@@ -232,9 +232,7 @@ export class VerificationComponent implements OnInit {
     this.subDataOne = this.usersService.getAllUsers(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
-
-          this.users = res.data;
-          console.log("  this.users ",  this.users )
+          this.users = res.data.filter(entry => !entry.hasOwnProperty("isVerfied"));
           this.usersCount = res.count;
           this.holdPrevData = this.users;
           this.totalUsersStore = this.usersCount;
