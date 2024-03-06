@@ -10,7 +10,7 @@ import {AdminPermissions} from 'src/app/enum/admin-permission.enum';
 import {MatCheckbox, MatCheckboxChange} from '@angular/material/checkbox';
 import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UtilsService} from '../../../../services/core/utils.service';
-import {debounceTime, distinctUntilChanged, pluck, switchMap,} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, finalize, pluck, switchMap,} from 'rxjs/operators';
 import {Pagination} from '../../../../interfaces/core/pagination';
 import {MatDialog} from '@angular/material/dialog';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -226,8 +226,12 @@ export class AllBannerComponent implements OnInit {
       select: mSelect,
       sort: { createdAt: -1 },
     };
-
-    this.subDataOne = this.bannerService.getAllBanner(filter, null).subscribe({
+    this.spinner.show();
+    this.subDataOne = this.bannerService.getAllBanner(filter, null).pipe(
+      finalize(() => {
+        this.spinner.hide();
+      }))
+      .subscribe({
       next: (res) => {
         if (res.success) {
           this.banners = res.data;
