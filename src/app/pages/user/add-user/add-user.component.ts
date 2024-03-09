@@ -6,12 +6,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {UsersService} from '../../../services/common/users.service';
-import {FileUploadService} from 'src/app/services/gallery/file-upload.service';
-import {defaultUploadImage, GENDERS} from 'src/app/core/utils/app-data';
 import {Select} from 'src/app/interfaces/core/select';
-import {AllImagesDialogComponent} from '../../gallery/images/all-images-dialog/all-images-dialog.component';
-import {Gallery} from '../../../interfaces/gallery/gallery.interface';
-import {MatDialog} from '@angular/material/dialog';
 
 interface AccessOption {
   name: string;
@@ -39,7 +34,6 @@ export class AddUserComponent implements OnInit {
   );
 
 
-  genders: Select[] = GENDERS;
   hasAccess: Select[] = [
     {value: true, viewValue: 'Yes'},
     {value: false, viewValue: 'No'},
@@ -50,10 +44,6 @@ export class AddUserComponent implements OnInit {
     {value: false, viewValue: 'No'},
   ];
 
-  GenderControl = new FormControl<AccessOption | null>(
-    null,
-    Validators.required
-  );
 
 
   // Data Form
@@ -65,18 +55,11 @@ export class AddUserComponent implements OnInit {
   user?: User;
 
 
-  // Image Picker
-  pickedImage = defaultUploadImage;
-  pickedMobileImage = defaultUploadImage;
-
 
   // Subscriptions
   private subDataOne: Subscription;
   private subDataTwo: Subscription;
   private subDataThree: Subscription;
-  private subDataFour: Subscription;
-  private subDataFive: Subscription;
-  private subDataSix: Subscription;
   private subRouteOne: Subscription;
 
   constructor(
@@ -85,11 +68,7 @@ export class AddUserComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
     private userService: UsersService,
-    private router: Router,
-    private fileUploadService: FileUploadService,
-    private dialog: MatDialog,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     // Init Form
@@ -114,25 +93,17 @@ export class AddUserComponent implements OnInit {
 
   private initDataForm() {
     this.dataForm = this.fb.group({
-      name: [null],
       username: [null, Validators.required],
-      address: [null],
       hasAccess: [null],
       isVerfied: [null],
-      gender: [null],
       password: [null],
       email: new FormControl('', [Validators.email]),
       phone: [null, Validators.required],
-      profileImg: [null],
     });
   }
 
   private setFormValue() {
     this.dataForm.patchValue(this.user);
-
-    if (this.user && this.user.profileImg) {
-      this.pickedImage = this.user.profileImg;
-    }
   }
 
   onSubmit() {
@@ -186,7 +157,6 @@ export class AddUserComponent implements OnInit {
         if (res.success) {
           this.uiService.success(res.message);
           this.formElement.resetForm();
-          this.pickedImage = defaultUploadImage;
         } else {
           this.uiService.warn(res.message);
         }
@@ -223,33 +193,8 @@ export class AddUserComponent implements OnInit {
 
   /**
    * COMPONENT DIALOG
-   * openGalleryDialog()
    */
 
-  public openGalleryDialog(type: 'image' | 'mobileImage') {
-    const dialogRef = this.dialog.open(AllImagesDialogComponent, {
-      data: {type: 'single', count: 1},
-      panelClass: ['theme-dialog', 'full-screen-modal-lg'],
-      width: '100%',
-      minHeight: '100%',
-      autoFocus: false,
-      disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      if (dialogResult) {
-        if (dialogResult.data && dialogResult.data.length > 0) {
-          const image: Gallery = dialogResult.data[0] as Gallery;
-          if (type === 'mobileImage') {
-            this.dataForm.patchValue({mobileImage: image.url});
-            this.pickedMobileImage = image.url;
-          } else {
-            this.dataForm.patchValue({profileImg: image.url});
-            this.pickedImage = image.url;
-          }
-        }
-      }
-    });
-  }
 
   /**
    * ON DESTROY
@@ -264,15 +209,6 @@ export class AddUserComponent implements OnInit {
     }
     if (this.subDataThree) {
       this.subDataThree.unsubscribe();
-    }
-    if (this.subDataFour) {
-      this.subDataFour.unsubscribe();
-    }
-    if (this.subDataFive) {
-      this.subDataFive.unsubscribe();
-    }
-    if (this.subDataSix) {
-      this.subDataSix.unsubscribe();
     }
     if (this.subRouteOne) {
       this.subRouteOne.unsubscribe();

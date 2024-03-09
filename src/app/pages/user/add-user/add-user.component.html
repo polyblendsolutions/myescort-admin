@@ -10,22 +10,10 @@
 <section class="from-section">
   <form #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="area-border">
 
-    <div class="form-img-avatar">
-      <img matTooltip="Main Banner Image" (click)="openGalleryDialog('image')" [src]="pickedImage" alt="">
-      <!--      <img matTooltip="Mobile Banner Image" (click)="openGalleryDialog('mobileImage')" [src]="pickedMobileImage" alt="">-->
-    </div>
 
     <div class="grid">
 
       <div class="div-one">
-        <div class="from">
-          <mat-label>Name</mat-label>
-          <mat-form-field appearance="outline">
-            <input formControlName="name" matInput  placeholder="Enter name"/>
-            <mat-error>This field is required.</mat-error>
-          </mat-form-field>
-        </div>
-
 
         <div class="from">
           <mat-label>User Name</mat-label>
@@ -33,11 +21,6 @@
             <input type="username" formControlName="username" matInput placeholder="Enter customer email">
           </mat-form-field>
         </div>
-
-      </div>
-
-
-      <div class="div-one">
         <div class="from">
           <mat-label>Phone</mat-label>
           <mat-form-field appearance="outline">
@@ -46,16 +29,14 @@
           </mat-form-field>
         </div>
 
+      </div>
+      <div class="div-one">
         <div class="from">
           <mat-label>Email</mat-label>
           <mat-form-field appearance="outline">
             <input type="email" formControlName="email" matInput placeholder="Enter customer email">
           </mat-form-field>
         </div>
-      </div>
-
-
-      <div class="div-one">
         <div class="from">
           <mat-label>Has Access</mat-label>
           <mat-form-field appearance="outline">
@@ -68,33 +49,6 @@
             <mat-error *ngIf="HasAccessControl.hasError('required')">Please choose an field</mat-error>
           </mat-form-field>
         </div>
-
-<!--        <div class="from">-->
-<!--          <mat-label>Is Verfied</mat-label>-->
-<!--          <mat-form-field appearance="outline">-->
-<!--            <mat-select formControlName="isVerfied" required>-->
-
-<!--              <mat-option *ngFor="let isVerfied of isVerfied" [value]="isVerfied.value">-->
-<!--                {{isVerfied.viewValue}}-->
-<!--              </mat-option>-->
-<!--            </mat-select>-->
-<!--            <mat-error *ngIf="HasAccessControl.hasError('required')">Please choose an field</mat-error>-->
-<!--          </mat-form-field>-->
-<!--        </div>-->
-        <div class="from">
-          <mat-label>Gender</mat-label>
-          <mat-form-field appearance="outline">
-            <mat-select formControlName="gender" >
-
-              <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                {{gender.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="GenderControl.hasError('required')">Please choose an field</mat-error>
-          </mat-form-field>
-        </div>
-
-
       </div>
 
 
@@ -115,7 +69,7 @@
       <button mat-raised-button type="submit" class="btn-submit">
         {{ id ? "Update" : "Submit" }}
       </button>
-      <button type="button" [routerLink]="['../']" mat-raised-button class="btn-submit color">
+      <button type="button" [routerLink]="['/user/user-list']" mat-raised-button class="btn-submit color">
         Cancel
       </button>
     </div>
