@@ -57,10 +57,10 @@ export class AddUserComponent implements OnInit {
 
 
   // Subscriptions
-  private subDataOne: Subscription;
-  private subDataTwo: Subscription;
-  private subDataThree: Subscription;
-  private subRouteOne: Subscription;
+  private userByIdSubscription: Subscription;
+  private addUserSubscription: Subscription;
+  private updateUserSubscription: Subscription;
+  private routeParamsSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -75,7 +75,7 @@ export class AddUserComponent implements OnInit {
     this.initDataForm();
 
     // GET ID FORM PARAM
-    this.subRouteOne = this.activatedRoute.paramMap.subscribe((param) => {
+    this.routeParamsSubscription = this.activatedRoute.paramMap.subscribe((param) => {
       this.id = param.get('id');
 
       if (this.id) {
@@ -134,7 +134,7 @@ export class AddUserComponent implements OnInit {
 
   private getUserById() {
     this.spinnerService.show();
-    this.subDataOne = this.userService.getUsersById(this.id).subscribe({
+    this.userByIdSubscription = this.userService.getUsersById(this.id).subscribe({
       next: (res) => {
         this.spinnerService.hide();
         if (res.data) {
@@ -151,7 +151,7 @@ export class AddUserComponent implements OnInit {
 
   private addUser() {
     this.spinnerService.show();
-    this.subDataTwo = this.userService.addUser(this.dataForm.value).subscribe({
+    this.addUserSubscription = this.userService.addUser(this.dataForm.value).subscribe({
       next: (res) => {
         this.spinnerService.hide();
         if (res.success) {
@@ -170,7 +170,7 @@ export class AddUserComponent implements OnInit {
 
   private updateUserById() {
     this.spinnerService.show();
-    this.subDataThree = this.userService
+    this.updateUserSubscription = this.userService
       .updateUsersById(this.user._id, this.dataForm.value)
       .subscribe({
         next: (res) => {
@@ -201,17 +201,17 @@ export class AddUserComponent implements OnInit {
    */
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.userByIdSubscription) {
+      this.userByIdSubscription.unsubscribe();
     }
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.addUserSubscription) {
+      this.addUserSubscription.unsubscribe();
     }
-    if (this.subDataThree) {
-      this.subDataThree.unsubscribe();
+    if (this.updateUserSubscription) {
+      this.updateUserSubscription.unsubscribe();
     }
-    if (this.subRouteOne) {
-      this.subRouteOne.unsubscribe();
+    if (this.routeParamsSubscription) {
+      this.routeParamsSubscription.unsubscribe();
     }
   }
 }
