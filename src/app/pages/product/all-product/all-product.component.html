@@ -204,10 +204,9 @@
                   [routerLink]="['../', 'edit-product', data._id]" mat-mini-fab matTooltip="Edit">
             <mat-icon>edit</mat-icon>
           </button>
-          <a style="margin-left: 5px;" mat-mini-fab color="primary" [href]="'https://ogmedia.dk/product-details/' + data._id"
-             target="_blank" mat-icon-button>
+          <button style="margin-left: 5px;" mat-mini-fab color="primary" (click)="openExternalUrl(data._id)"  matTooltip="View">
             <mat-icon>visibility</mat-icon>
-          </a>
+        </button>
         </td>
       </tr>
     </table>

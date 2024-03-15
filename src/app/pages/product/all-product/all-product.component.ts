@@ -23,6 +23,7 @@ import {Brand} from "../../../interfaces/common/brand.interface";
 import {CategoryService} from "../../../services/common/category.service";
 import {Publisher} from "../../../interfaces/common/publisher.interface";
 import {PublisherService} from "../../../services/common/publisher.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-all-product',
@@ -609,7 +610,20 @@ export class AllProductComponent implements OnInit {
       this.getAllProduct();
     }
   }
+ 
+  /**
+    * On View Button Click
+  */
 
+  public openExternalUrl(productId:string): void {
+    const url = `https://${environment.domain}/ad-details/${productId}`;
+    const newTab = window.open(url, '_blank');
+    if (newTab) {
+      newTab.focus();
+    } else {
+      this.uiService.warn('Unable to open new tab. Please check your browser settings.');
+    }
+  }
 
   /**
    * ON DESTROY
