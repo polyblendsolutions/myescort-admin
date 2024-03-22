@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   // Basic
   public env = environment;
   public year = new Date().getFullYear();
+  public hide:boolean = true;
+
   // Reactive Form
   loginForm: FormGroup;
   username = new FormControl('', [Validators.required]);
@@ -28,6 +30,12 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) {
     this.googleNoIndex();
+  }
+  /**
+   * togglePasswordVisibility
+   */
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
   }
 
   ngOnInit(): void {

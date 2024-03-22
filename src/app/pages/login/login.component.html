@@ -31,8 +31,8 @@
 
           <mat-form-field class="mat-data-input-field" appearance="outline">
             <mat-label>Password</mat-label>
-            <input formControlName="password" type="password" matInput placeholder="Enter your password...">
-            <mat-icon matSuffix>lock</mat-icon>
+            <input formControlName="password" [type]="hide ? 'password' : 'text'" matInput placeholder="Enter your password...">            
+            <mat-icon mat-icon-button matSuffix (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'lock' }}</mat-icon>
             <mat-error>This field is required</mat-error>
           </mat-form-field>
 
