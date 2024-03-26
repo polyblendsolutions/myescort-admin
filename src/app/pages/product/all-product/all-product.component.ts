@@ -78,9 +78,11 @@ export class AllProductComponent implements OnInit {
   searchProduct: Product[] = [];
 
   // Subscriptions
-  private subDataOne: Subscription;
-  private subDataTwo: Subscription;
-  private subDataFour: Subscription;
+  private subAllProduct: Subscription;
+  private subAllPublisher: Subscription;
+  private subAllCategory: Subscription;
+  private subDeleteProduct: Subscription;
+  private subUpdateProduct: Subscription;
   private subForm: Subscription;
   private subRouteOne: Subscription;
   private subReload: Subscription;
@@ -254,11 +256,12 @@ export class AllProductComponent implements OnInit {
       select: mSelect,
       sort: {createdAt: -1},
     };
-
-    this.subDataOne = this.productService
+    this.spinner.show();
+    this.subAllProduct = this.productService
       .getAllProducts(filter, null)
       .subscribe({
         next: (res) => {
+          this.spinner.hide();
           if (res.success) {
             this.products = res.data;
             console.log("this.products",this.products);
@@ -268,6 +271,7 @@ export class AllProductComponent implements OnInit {
           }
         },
         error: (err) => {
+          this.spinner.hide();
           console.log(err);
         },
       });
@@ -287,8 +291,8 @@ export class AllProductComponent implements OnInit {
       select: mSelect,
       sort: {createdAt: -1},
     };
-
-    this.subDataOne = this.publisherService
+    
+    this.subAllPublisher = this.publisherService
       .getAllPublisher(filter, null)
       .subscribe({
         next: (res) => {
@@ -298,7 +302,7 @@ export class AllProductComponent implements OnInit {
           }
         },
         error: (err) => {
-          console.log(err);
+        console.log(err);
         },
       });
   }
@@ -321,7 +325,7 @@ export class AllProductComponent implements OnInit {
       sort: {createdAt: -1},
     };
 
-    this.subDataOne = this.categoryService
+    this.subAllCategory = this.categoryService
       .getAllCategory(filter, null)
       .subscribe({
         next: (res) => {
@@ -337,7 +341,7 @@ export class AllProductComponent implements OnInit {
 
   private deleteMultipleProductById() {
     this.spinner.show();
-    this.subDataTwo = this.productService
+    this.subDeleteProduct = this.productService
       .deleteMultipleProductById(this.selectedIds)
       .subscribe(
         (res) => {
@@ -373,7 +377,7 @@ export class AllProductComponent implements OnInit {
 
   private updateMultipleProductById(data: any) {
     this.spinner.show();
-    this.subDataTwo = this.productService
+    this.subUpdateProduct = this.productService
       .updateMultipleProductById(this.selectedIds, data)
       .subscribe(
         (res) => {
@@ -520,7 +524,7 @@ export class AllProductComponent implements OnInit {
       sort: this.sortQuery,
     };
 
-    this.subDataOne = this.productService
+    this.subAllProduct = this.productService
       .getAllProducts(filterData, this.searchQuery)
       .subscribe({
         next: (res) => {
@@ -630,20 +634,27 @@ export class AllProductComponent implements OnInit {
    */
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subAllProduct) {
+      this.subAllProduct.unsubscribe();
     }
 
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.subAllPublisher) {
+      this.subAllPublisher.unsubscribe();
+    }
+
+    if (this.subAllCategory) {
+      this.subAllCategory.unsubscribe();
+    }
+
+    if (this.subDeleteProduct) {
+      this.subDeleteProduct.unsubscribe();
+    }
+    if (this.subUpdateProduct) {
+      this.subUpdateProduct.unsubscribe();
     }
 
     if (this.subRouteOne) {
       this.subRouteOne.unsubscribe();
-    }
-
-    if (this.subDataFour) {
-      this.subDataFour.unsubscribe();
     }
 
     if (this.subForm) {
