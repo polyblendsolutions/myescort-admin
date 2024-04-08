@@ -72,7 +72,7 @@ export class ViewVerificationComponent implements OnInit {
     }
     public async verifyUserById(isVerify: boolean) {
       const payload = {
-        isVerfied: isVerify,
+        isVerfied: isVerify?'Approved':'Rejected',
         ...(isVerify ? {} : { comment: await this.openDialogAndGetInput() }),
       };
       if(isVerify || payload.comment){

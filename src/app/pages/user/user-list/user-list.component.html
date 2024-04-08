@@ -124,7 +124,7 @@
         <td>{{ data.email || "-" | uppercase }}</td>
         <td>{{ data.phone || "-" }}</td>
 <!--        <td *ngIf="data?.images &&  !data.isVerfied">Send Varify Request</td>-->
-        <td>{{ data?.isVerfied ? 'YES' : "NO" }}</td>
+        <td>{{ data?.isVerfied==='Approved' ? 'Verified' : data?.isVerfied}}</td>
 <!--        <td *ngIf="data?.images && data.isVerfied">{{ data.isVerfied }}</td>-->
 <!--        <td *ngIf="!data?.images && !data.isVerfied">-</td>-->
         <td class="button">
