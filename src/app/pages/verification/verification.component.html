@@ -123,7 +123,7 @@
         <td>{{ data?.username || "-" | uppercase }}</td>
         <td>{{ data?.email || "-" | uppercase }}</td>
         <td>{{ data?.phone || "-" }}</td>
-        <td *ngIf="data.isVerfied==='Pending'">Send Varify Request</td>       
+        <td *ngIf="data?.verifiedStatus===1">Pending</td>       
         <td class="button">
           <button matTooltip="View" mat-mini-fab color="accent" [routerLink]="['view-verification/', data._id]">
             <mat-icon>visibility</mat-icon>

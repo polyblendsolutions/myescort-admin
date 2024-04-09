@@ -9,6 +9,7 @@ export interface Users {
   createdAt?: Date;
   updatedAt?: Date;
   select?: boolean;
-  isVerfied?: string;
+  isVerfied?: boolean;
+  verifiedStatus?: number;
   verify?: boolean;
 }
