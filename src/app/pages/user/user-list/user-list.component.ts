@@ -225,6 +225,7 @@ export class UserListComponent implements OnInit {
         profileImg: 1,
         createdAt: 1,
         isVerfied: 1,
+        verifiedStatus:1,
       },
       sort: {createdAt: -1},
     };
