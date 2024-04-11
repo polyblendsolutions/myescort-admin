@@ -225,6 +225,7 @@ export class VerificationComponent implements OnInit {
         profileImg: 1,
         createdAt: 1,
         isVerfied: 1,
+        verifiedStatus: 1,
       },
       sort: {createdAt: -1},
     };
@@ -232,7 +233,7 @@ export class VerificationComponent implements OnInit {
     this.subDataOne = this.usersService.getAllUsers(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
-          this.users = res.data.filter(entry => !entry.hasOwnProperty("isVerfied"));
+          this.users = res.data.filter(entry => entry?.verifiedStatus===1);
           this.usersCount = res.count;
           this.holdPrevData = this.users;
           this.totalUsersStore = this.usersCount;

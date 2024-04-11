@@ -98,7 +98,7 @@
         <th>Users</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Verfied</th>
+        <th>Status</th>
         <th>Action</th>
       </tr>
 
@@ -123,10 +123,7 @@
         <td>{{ data.username || "-" | uppercase }}</td>
         <td>{{ data.email || "-" | uppercase }}</td>
         <td>{{ data.phone || "-" }}</td>
-<!--        <td *ngIf="data?.images &&  !data.isVerfied">Send Varify Request</td>-->
-        <td>{{ data?.isVerfied ? 'YES' : "NO" }}</td>
-<!--        <td *ngIf="data?.images && data.isVerfied">{{ data.isVerfied }}</td>-->
-<!--        <td *ngIf="!data?.images && !data.isVerfied">-</td>-->
+        <td>{{ data?.isVerfied || data?.verifiedStatus === 2 ? 'Verified' : data?.verifiedStatus === 3 ? 'Rejected' : data?.verifiedStatus === 1 ? 'Pending' : 'Unverified' }}</td>
         <td class="button">
           <button matTooltip="Edit" mat-mini-fab color="accent" [routerLink]="['../edit-user/', data._id]">
             <mat-icon>edit</mat-icon>

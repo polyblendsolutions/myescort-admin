@@ -7,7 +7,7 @@ import { User } from 'src/app/interfaces/common/user.interface';
 import { UsersService } from 'src/app/services/common/users.service';
 import { UiService } from 'src/app/services/core/ui.service';
 import { ConfirmInputDailogComponent } from 'src/app/shared/components/ui/confirm-input-dailog/confirm-input-dailog.component';
-
+import { VerifiedStatus } from 'src/app/enum/verification-status.enum'
 @Component({
   selector: 'app-view-verification',
   templateUrl: './view-verification.component.html',
@@ -70,12 +70,13 @@ export class ViewVerificationComponent implements OnInit {
         },
       });
     }
-    public async verifyUserById(isVerify: boolean) {
+    public async verifyUserById(isVerified: boolean) {
       const payload = {
-        isVerfied: isVerify,
-        ...(isVerify ? {} : { comment: await this.openDialogAndGetInput() }),
+        isVerfied: isVerified,
+        verifiedStatus: isVerified ? VerifiedStatus.Verified : VerifiedStatus.Rejected,
+        ...(isVerified ? {} : { comment: await this.openDialogAndGetInput() }),
       };
-      if(isVerify || payload.comment){
+      if(isVerified || payload.comment){
         this.subVerificationUpdate = this.userService.updateUsersById(this.verificationId, payload).subscribe({
           next: (res) => {
             this.spinnerService.hide();
