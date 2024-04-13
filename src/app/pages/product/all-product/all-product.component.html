@@ -175,12 +175,12 @@
         <th class="t-checkbox">
           <mat-checkbox #matCheckbox (change)="onAllSelectChange($event)"></mat-checkbox>
         </th>
-        <th>Image</th>
+        <!-- <th>Image</th> -->
         <th>Title/Name</th>
         <th>Category</th>
         <th>Region</th>
         <th>Status</th>
-        <th>Flash Sale</th>
+        <!-- <th>Flash Sale</th> -->
         <th>Region Show</th>
         <th>Actions</th>
       </tr>
@@ -190,14 +190,14 @@
           <mat-checkbox class="t-mat-checkbox" [(ngModel)]="data.select"
                         (ngModelChange)="onCheckChange($event, i, data._id)"></mat-checkbox>
         </td>
-        <td class="img-product">
+        <!-- <td class="img-product">
           <img checkImageDefault class="table-image" [src]="data && data?.images ? data.images[0] : ''" [alt]="">
-        </td>
+        </td> -->
         <td>{{data.name}}</td>
         <td>{{data.category?.name}}</td>
         <td>{{data.division?.name}}</td>
         <td [style.color]="data.status === 'publish' ? 'green' : 'red'">{{data.status | titlecase}}</td>
-        <td [style.color]="data.isFeatured  ? 'green' : 'red'">{{data.isFeatured ? 'Yes' : 'No'}}</td>
+        <!-- <td [style.color]="data.isFeatured  ? 'green' : 'red'">{{data.isFeatured ? 'Yes' : 'No'}}</td> -->
         <td [style.color]="data.isRegion  ? 'green' : 'red'">{{data.isRegion ? 'Yes' : 'No'}}</td>
         <td class="td-action">
           <button [disabled]="data._id === adminId || !checkEditPermission"
