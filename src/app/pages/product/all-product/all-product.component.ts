@@ -49,7 +49,7 @@ export class AllProductComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  ProductsPerPage = 5;
+  productsPerPage = 5;
   totalProductsStore = 0;
 
   // FilterData
@@ -140,7 +140,7 @@ export class AllProductComponent implements OnInit {
             return EMPTY;
           }
           const pagination: Pagination = {
-            pageSize: Number(this.ProductsPerPage),
+            pageSize: Number(this.productsPerPage),
             currentPage: Number(this.currentPage) - 1,
           };
 
@@ -202,7 +202,7 @@ export class AllProductComponent implements OnInit {
    * checkDeletePermission()
    */
   onSelectShowPerPage(val) {
-    this.ProductsPerPage = val;
+    this.productsPerPage = val;
     this.getAllProduct();
   }
 
@@ -252,7 +252,7 @@ export class AllProductComponent implements OnInit {
 
     const filter: FilterData = {
       filter: this.filter,
-      pagination: {pageSize: this.ProductsPerPage, currentPage: this.currentPage - 1},
+      pagination: {pageSize: this.productsPerPage, currentPage: this.currentPage - 1},
       select: mSelect,
       sort: {createdAt: -1},
     };
@@ -410,16 +410,6 @@ export class AllProductComponent implements OnInit {
 
   filterData(value: any, index: number, type: string) {
     switch (type) {
-      case 'product': {
-        this.filter = {...this.filter, ...{'product._id': value}};
-        this.activeFilter2 = index;
-        break;
-      }
-      case 'publishers': {
-        this.filter = { ...this.filter, ...{ publishers: value } };
-        this.activeFilter3 = index;
-        break;
-      }
       case 'category': {
         this.filter = { ...this.filter, ...{ 'category._id': value} };
         this.activeFilter3 = index;
