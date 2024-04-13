@@ -55,7 +55,7 @@ export class AllProductComponent implements OnInit {
   // FilterData
   filter: any = null;
   sortQuery: any = null;
-  isFilterApplied: number = null;
+  activeFilterIndex: number = null;
   activeSort: number;
   number = [{num: '10'}, {num: '25'}, {num: '50'}, {num: '100'}];
 
@@ -410,7 +410,7 @@ export class AllProductComponent implements OnInit {
     switch (type) {
       case 'category': {
         this.filter = { ...this.filter, ...{ 'category._id': value} };
-        this.isFilterApplied = index;
+        this.activeFilterIndex = index;
         break;
       }
       default: {
@@ -594,7 +594,7 @@ export class AllProductComponent implements OnInit {
 
   onRemoveAllQuery() {
     this.activeSort = null;
-    this.isFilterApplied = null;
+    this.activeFilterIndex = null;
     this.sortQuery = {createdAt: -1};
     this.filter = null;
     this.dataFormDateRange.reset();

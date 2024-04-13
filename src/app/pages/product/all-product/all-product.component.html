@@ -34,7 +34,7 @@
       <mat-menu #menuCat="matMenu">
         <button *ngFor="let data of categories; let i = index" mat-menu-item
                 (click)="filterData(data._id, i, 'category')"
-                [class.dropdown-active]="isFilterApplied === i">
+                [class.dropdown-active]="activeFilterIndex === i">
           {{data.name}}
         </button>
       </mat-menu>
