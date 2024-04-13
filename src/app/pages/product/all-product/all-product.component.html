@@ -26,7 +26,7 @@
 
   <div class="action-multiple">
 
-    <div class="date-filter">
+    <!-- <div class="date-filter">
       <mat-form-field class="mat-date-input-field" appearance="outline" (click)="picker.open()">
         <mat-label>FilterData Date Range</mat-label>
         <mat-date-range-input [formGroup]="dataFormDateRange" [rangePicker]="picker" [max]="today">
@@ -41,7 +41,7 @@
         </mat-error>
         <mat-error *ngIf="dataFormDateRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
-    </div>
+    </div> -->
 
     <div class="sort">
       <button mat-raised-button color="primary" [matMenuTriggerFor]="menuCat">
@@ -86,7 +86,7 @@
 <!--      </mat-menu>-->
 <!--    </div>-->
 
-    <div class="sort">
+    <!-- <div class="sort">
       <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSort">
         Sort By
         <mat-icon>arrow_drop_down</mat-icon>
@@ -111,7 +111,7 @@
           Quantity (High ~ Low)
         </button>
       </mat-menu>
-    </div>
+    </div> -->
 
 <!--    <div class="sort">-->
 <!--      <button mat-raised-button color="accent" >-->
@@ -185,7 +185,7 @@
         <th>Actions</th>
       </tr>
       <tr
-        *ngFor="let data of products | paginate: { itemsPerPage: ProductsPerPage, currentPage: currentPage, totalItems: totalProducts } ; let i = index">
+        *ngFor="let data of products | paginate: { itemsPerPage: ProductsPerPage, currentPage: currentPage, totalItems: productCount } ; let i = index">
         <td class="t-checkbox">
           <mat-checkbox class="t-mat-checkbox" [(ngModel)]="data.select"
                         (ngModelChange)="onCheckChange($event, i, data._id)"></mat-checkbox>
@@ -216,7 +216,7 @@
     <pagination-controls
       class="data-pagination"
       [autoHide]="true"
-      [maxSize]="15"
+      [maxSize]="ProductsPerPage"
       (pageChange)="onPageChanged($event)">
     </pagination-controls>
   </div>     <!-- END PAGINATION -->
