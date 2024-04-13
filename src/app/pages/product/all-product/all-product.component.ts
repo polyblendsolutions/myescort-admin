@@ -49,15 +49,13 @@ export class AllProductComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  ProductsPerPage = 5;
+  productsPerPage = 5;
   totalProductsStore = 0;
 
   // FilterData
   filter: any = null;
   sortQuery: any = null;
-  activeFilter1: number = null;
-  activeFilter2: number = null;
-  activeFilter3: number = null;
+  activeFilterIndex: number = null;
   activeSort: number;
   number = [{num: '10'}, {num: '25'}, {num: '50'}, {num: '100'}];
 
@@ -140,7 +138,7 @@ export class AllProductComponent implements OnInit {
             return EMPTY;
           }
           const pagination: Pagination = {
-            pageSize: Number(this.ProductsPerPage),
+            pageSize: Number(this.productsPerPage),
             currentPage: Number(this.currentPage) - 1,
           };
 
@@ -202,7 +200,7 @@ export class AllProductComponent implements OnInit {
    * checkDeletePermission()
    */
   onSelectShowPerPage(val) {
-    this.ProductsPerPage = val;
+    this.productsPerPage = val;
     this.getAllProduct();
   }
 
@@ -252,7 +250,7 @@ export class AllProductComponent implements OnInit {
 
     const filter: FilterData = {
       filter: this.filter,
-      pagination: null,
+      pagination: {pageSize: this.productsPerPage, currentPage: this.currentPage - 1},
       select: mSelect,
       sort: {createdAt: -1},
     };
@@ -410,14 +408,9 @@ export class AllProductComponent implements OnInit {
 
   filterData(value: any, index: number, type: string) {
     switch (type) {
-      case 'product': {
-        this.filter = {...this.filter, ...{'product._id': value}};
-        this.activeFilter2 = index;
-        break;
-      }
-      case 'publishers': {
-        this.filter = { ...this.filter, ...{ publishers: value } };
-        this.activeFilter3 = index;
+      case 'category': {
+        this.filter = { ...this.filter, ...{ 'category._id': value} };
+        this.activeFilterIndex = index;
         break;
       }
       default: {
@@ -601,9 +594,7 @@ export class AllProductComponent implements OnInit {
 
   onRemoveAllQuery() {
     this.activeSort = null;
-    this.activeFilter1 = null;
-    this.activeFilter2 = null;
-    this.activeFilter3 = null;
+    this.activeFilterIndex = null;
     this.sortQuery = {createdAt: -1};
     this.filter = null;
     this.dataFormDateRange.reset();

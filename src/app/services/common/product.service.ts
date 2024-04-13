@@ -50,7 +50,7 @@ export class ProductService {
     if (searchQuery) {
       params = params.append('q', searchQuery);
     }
-    return this.httpClient.post<{ data: Product[], count: number, success: boolean }>(API_PRODUCT + 'get-all', filterData, {params});
+    return this.httpClient.post<{ data: Product[], count: number, success: boolean }>(API_PRODUCT + 'admin-get-all', filterData, {params});
   }
 
   getProductById(id: string, select?: string) {
