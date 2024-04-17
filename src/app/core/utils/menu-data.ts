@@ -164,51 +164,27 @@ export const SUPER_ADMIN_MENU: AdminMenu[] = [
   {
     id: 7,
     name: 'User',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'user/user-list',
     icon: 'person_3',
-    subMenus: [
-      {
-        id: 1,
-        name: 'All User',
-        hasSubMenu: true,
-        routerLink: 'user/user-list',
-        icon: 'arrow_right',
-      }
-    ],
+    subMenus: [],
   },
   {
     id: 8,
     name: 'Admin Control',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'admin-control/all-admins',
     icon: 'admin_panel_settings',
-    subMenus: [
-      {
-        id: 1,
-        name: 'All Admin',
-        hasSubMenu: true,
-        routerLink: 'admin-control/all-admins',
-        icon: 'arrow_right',
-      }
-    ],
+    subMenus: [],
   },
 
   {
     id: 9,
     name: 'Blog Area',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'blog/all-blog',
     icon: 'rss_feed',
-    subMenus: [
-      {
-        id: 1,
-        name: 'Blog',
-        hasSubMenu: true,
-        routerLink: 'blog/all-blog',
-        icon: 'arrow_right',
-      }
-    ],
+    subMenus: [],
   },
  
 
@@ -241,19 +217,10 @@ export const SUPER_ADMIN_MENU: AdminMenu[] = [
   {
     id: 12,
     name: 'Additional Page',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'additionl-page/page-list',
     icon: 'note_add',
-    subMenus: [
-      {
-        id: 1,
-        name: 'Page List',
-        hasSubMenu: true,
-        routerLink: 'additionl-page/page-list',
-        icon: 'arrow_right',
-      }
-
-    ],
+    subMenus: [],
   },
 
 
