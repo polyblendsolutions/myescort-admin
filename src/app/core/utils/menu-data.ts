@@ -9,23 +9,6 @@ export const SUPER_ADMIN_MENU: AdminMenu[] = [
     icon: 'space_dashboard',
     subMenus: [],
   },
-  {
-    id: 1,
-    name: 'Customization',
-    hasSubMenu: true,
-    routerLink: null,
-    icon: 'auto_fix_off',
-    subMenus: [
-      
-      {
-        id: 2,
-        name: 'Banner',
-        hasSubMenu: true,
-        routerLink: 'customization/all-banner',
-        icon: 'arrow_right',
-      }
-    ],
-  },
 
   {
     id: 2,

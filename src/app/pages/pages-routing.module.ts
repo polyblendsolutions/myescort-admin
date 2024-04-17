@@ -35,10 +35,6 @@ const routes: Routes = [
       },
 
       {
-        path: 'customization',
-        loadChildren: () => import('./customization/customization.module').then(m => m.CustomizationModule),
-      },
-      {
         path: 'catalog',
         loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule),
       },
