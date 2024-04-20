@@ -55,7 +55,7 @@ export class AllReviewComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalReviews = 0;
-  ReviewsPerPage = 5;
+  ReviewsPerPage = 100;
   totalReviewsStore = 0;
 
   // FilterData

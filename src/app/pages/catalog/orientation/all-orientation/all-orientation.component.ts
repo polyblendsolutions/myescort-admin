@@ -57,7 +57,7 @@ export class AllOrientationComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalOrientations = 0;
-  OrientationsPerPage = 5;
+  OrientationsPerPage = 100;
   totalOrientationsStore = 0;
 
   // FilterData

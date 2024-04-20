@@ -57,7 +57,7 @@ export class AllCategoryComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalCategorys = 0;
-  CategorysPerPage = 5;
+  CategorysPerPage = 100;
   totalCategorysStore = 0;
 
   // FilterData

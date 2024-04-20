@@ -38,7 +38,7 @@ export class OrientationComponent implements OnInit, AfterViewInit, OnChanges, O
 
   // Pagination
   currentPage = 1;
-  dataPerPage = 10;
+  dataPerPage = 100;
   totalData = 0;
 
   // Destroy

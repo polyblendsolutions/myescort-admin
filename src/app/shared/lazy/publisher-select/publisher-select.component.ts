@@ -38,7 +38,7 @@ export class PublisherSelectComponent implements OnInit, AfterViewInit, OnChange
 
   // Pagination
   currentPage = 1;
-  dataPerPage = 10;
+  dataPerPage = 100;
   totalData = 0;
 
   // Destroy

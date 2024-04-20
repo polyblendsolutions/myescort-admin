@@ -64,7 +64,7 @@ export class AllImagesDialogComponent implements OnInit, AfterViewInit, OnDestro
   // Pagination
   currentPage = 1;
   totalGalleries = 0;
-  galleriesPerPage = 24;
+  galleriesPerPage = 100;
   totalGalleriesStore = 0;
 
   // FilterData

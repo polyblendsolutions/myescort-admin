@@ -36,7 +36,7 @@ export class AllAreaComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalAreas = 0;
-  areasPerPage = 10;
+  areasPerPage = 100;
   totalAreasStore = 0;
 
   // SEARCH AREA

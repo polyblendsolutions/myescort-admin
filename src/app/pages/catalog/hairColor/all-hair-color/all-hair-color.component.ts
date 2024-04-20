@@ -57,7 +57,7 @@ export class AllHairColorComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalHairColors = 0;
-  HairColorsPerPage = 5;
+  HairColorsPerPage = 100;
   totalHairColorsStore = 0;
 
   // FilterData

@@ -55,7 +55,7 @@ export class AllContactComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalContacts = 0;
-  ContactsPerPage = 5;
+  ContactsPerPage = 100;
   totalContactsStore = 0;
 
   // FilterData

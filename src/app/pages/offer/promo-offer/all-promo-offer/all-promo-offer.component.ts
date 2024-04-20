@@ -55,7 +55,7 @@ export class AllPromoOfferComponent implements OnInit, AfterViewInit, OnDestroy 
   // Pagination
   currentPage = 1;
   totalPromoOffers = 0;
-  PromoOffersPerPage = 5;
+  PromoOffersPerPage = 100;
   totalPromoOffersStore = 0;
 
   // FilterData

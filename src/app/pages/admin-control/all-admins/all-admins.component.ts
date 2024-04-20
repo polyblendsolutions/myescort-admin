@@ -47,7 +47,7 @@ export class AllAdminsComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  productsPerPage = 10;
+  productsPerPage = 100;
   totalProductsStore = 0;
 
   // FilterData and Date Range

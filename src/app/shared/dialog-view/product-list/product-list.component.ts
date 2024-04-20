@@ -50,7 +50,7 @@ export class ProductListComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  productsPerPage = 20;
+  productsPerPage = 100;
   totalProductsStore = 0;
 
   // SEARCH AREA

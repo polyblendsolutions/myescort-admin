@@ -56,7 +56,7 @@ export class UserListComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalUnit = 0;
-  UsersPerPage = 5;
+  UsersPerPage = 100;
   totalUsersStore = 0;
 
   // FilterData

@@ -36,7 +36,7 @@ export class AllZoneComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalZones = 0;
-  zonesPerPage = 10;
+  zonesPerPage = 100;
   totalZonesStore = 0;
 
   // SEARCH AREA

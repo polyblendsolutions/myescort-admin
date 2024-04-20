@@ -36,7 +36,7 @@ export class AllDivisionsComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalDivisions = 0;
-  divisionsPerPage = 10;
+  divisionsPerPage = 100;
   totalDivisionsStore = 0;
 
   // SEARCH AREA

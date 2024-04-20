@@ -56,7 +56,7 @@ export class AllFoldersComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalFileFolders = 0;
-  fileFoldersPerPage = 10;
+  fileFoldersPerPage = 100;
   totalFileFoldersStore = 0;
 
   // FilterData

@@ -55,7 +55,7 @@ export class AllSubCategoryComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalSubCategories = 0;
-  SubCategoriesPerPage = 5;
+  SubCategoriesPerPage = 100;
   totalSubCategoriesStore = 0;
 
   // FilterData

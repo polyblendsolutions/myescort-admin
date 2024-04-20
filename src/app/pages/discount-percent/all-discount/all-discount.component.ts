@@ -56,7 +56,7 @@ export class AllDiscountComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalDiscountPercents = 0;
-  DiscountPercentsPerPage = 5;
+  DiscountPercentsPerPage = 100;
   totalDiscountPercentsStore = 0;
 
   // FilterData

@@ -54,7 +54,7 @@ export class AllCouponComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalCoupons = 0;
-  CouponsPerPage = 5;
+  CouponsPerPage = 100;
   totalCouponsStore = 0;
 
   // FilterData

@@ -58,7 +58,7 @@ export class AllPublisherComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalPublishers = 0;
-  PublishersPerPage = 5;
+  PublishersPerPage = 100;
   totalPublishersStore = 0;
 
   // FilterData

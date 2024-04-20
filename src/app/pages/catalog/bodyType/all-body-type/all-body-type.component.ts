@@ -57,7 +57,7 @@ export class AllBodyTypeComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalBodyTypes = 0;
-  BodyTypesPerPage = 5;
+  BodyTypesPerPage = 100;
   totalBodyTypesStore = 0;
 
   // FilterData
