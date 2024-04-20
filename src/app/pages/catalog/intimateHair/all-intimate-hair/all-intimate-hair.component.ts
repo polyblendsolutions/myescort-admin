@@ -57,7 +57,7 @@ export class AllIntimateHairComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalIntimateHairs = 0;
-  IntimateHairsPerPage = 5;
+  IntimateHairsPerPage = 100;
   totalIntimateHairsStore = 0;
 
   // FilterData

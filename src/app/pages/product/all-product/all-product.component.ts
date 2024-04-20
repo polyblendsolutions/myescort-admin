@@ -49,7 +49,7 @@ export class AllProductComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalProducts = 0;
-  productsPerPage = 5;
+  productsPerPage = 100;
   totalProductsStore = 0;
 
   // FilterData

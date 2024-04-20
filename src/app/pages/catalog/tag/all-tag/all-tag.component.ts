@@ -62,7 +62,7 @@ export class AllTagComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalTags = 0;
-  TagsPerPage = 5;
+  TagsPerPage = 100;
   totalTagsStore = 0;
 
   // FilterData

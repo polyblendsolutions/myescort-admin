@@ -63,7 +63,7 @@ export class AllBrandComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalBrands = 0;
-  BrandsPerPage = 5;
+  BrandsPerPage = 100;
   totalBrandsStore = 0;
 
   // FilterData

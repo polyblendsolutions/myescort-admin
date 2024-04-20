@@ -54,7 +54,7 @@ export class AllReportComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalReports = 0;
-  ReportsPerPage = 5;
+  ReportsPerPage = 100;
   totalReportsStore = 0;
 
   // FilterData

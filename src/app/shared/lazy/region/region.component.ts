@@ -38,7 +38,7 @@ export class RegionComponent implements OnInit, AfterViewInit, OnChanges, OnDest
 
   // Pagination
   currentPage = 1;
-  dataPerPage = 10;
+  dataPerPage = 100;
   totalData = 0;
 
   // Destroy

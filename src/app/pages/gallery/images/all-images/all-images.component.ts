@@ -62,7 +62,7 @@ export class AllImagesComponent implements OnInit, AfterViewInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalGalleries = 0;
-  galleriesPerPage = 24;
+  galleriesPerPage = 100;
   totalGalleriesStore = 0;
 
   // FilterData

@@ -56,7 +56,7 @@ export class AllTypesComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalTypes = 0;
-  TypesPerPage = 5;
+  TypesPerPage = 100;
   totalTypesStore = 0;
 
   // FilterData

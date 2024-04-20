@@ -48,7 +48,7 @@ export class TransactionsComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalOrders = 0;
-  ordersPerPage = 30;
+  ordersPerPage = 100;
   totalOrdersStore = 0;
 
   toggleMenu: boolean = false;

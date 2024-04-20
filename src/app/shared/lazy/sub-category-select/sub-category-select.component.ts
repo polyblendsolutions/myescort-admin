@@ -40,7 +40,7 @@ export class SubCategorySelectComponent implements OnInit, AfterViewInit, OnChan
 
   // Pagination
   currentPage = 1;
-  dataPerPage = 10;
+  dataPerPage = 100;
   totalData = 0;
 
   // Destroy

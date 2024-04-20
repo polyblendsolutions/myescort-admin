@@ -39,7 +39,7 @@ export class AllBlogComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalBlogs = 0;
-  blogsPerPage = 5;
+  blogsPerPage = 100;
   totalBlogsStore = 0;
 
   // FilterData

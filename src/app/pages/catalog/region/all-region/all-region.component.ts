@@ -57,7 +57,7 @@ export class AllRegionComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalRegions = 0;
-  RegionsPerPage = 5;
+  RegionsPerPage = 100;
   totalRegionsStore = 0;
 
   // FilterData

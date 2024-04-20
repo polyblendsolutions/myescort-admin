@@ -56,7 +56,7 @@ export class AllNewsletterComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalNewsletters = 0;
-  NewslettersPerPage = 5;
+  NewslettersPerPage = 100;
   totalNewslettersStore = 0;
 
   // FilterData

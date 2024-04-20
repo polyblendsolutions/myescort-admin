@@ -57,7 +57,7 @@ export class AllAuthorComponent implements OnInit {
   // Pagination
   currentPage = 1;
   totalAuthors = 0;
-  AuthorsPerPage = 5;
+  AuthorsPerPage = 100;
   totalAuthorsStore = 0;
 
   // FilterData

@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // Pagination
   currentPage = 1;
   totalUnit = 0;
-  UsersPerPage = 5;
+  UsersPerPage = 100;
   totalUsersStore = 0;
   users: Users[] = [];
   holdPrevData: Users[] = [];

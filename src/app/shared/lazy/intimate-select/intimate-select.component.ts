@@ -38,7 +38,7 @@ export class IntimateSelectComponent implements OnInit, AfterViewInit, OnChanges
 
   // Pagination
   currentPage = 1;
-  dataPerPage = 10;
+  dataPerPage = 100;
   totalData = 0;
 
   // Destroy
