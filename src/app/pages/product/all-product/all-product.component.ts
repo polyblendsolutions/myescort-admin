@@ -245,7 +245,8 @@ export class AllProductComponent implements OnInit {
       category: 1,
       isFeatured: 1,
       isRegion: 1,
-      division: 1
+      division: 1,
+      status: 1
     };
 
     const filter: FilterData = {
