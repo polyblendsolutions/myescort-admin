@@ -82,25 +82,10 @@ export const SUPER_ADMIN_MENU: AdminMenu[] = [
   {
     id: 3,
     name: 'Ads',
-    hasSubMenu: true,
-    routerLink: null,
+    hasSubMenu: false,
+    routerLink: 'product/all-product',
     icon: 'inventory',
-    subMenus: [
-      {
-        id: 1,
-        name: 'Add Ads',
-        hasSubMenu: true,
-        routerLink: 'product/add-product',
-        icon: 'arrow_right',
-      },
-      {
-        id: 2,
-        name: 'Ads List',
-        hasSubMenu: true,
-        routerLink: 'product/all-product',
-        icon: 'arrow_right',
-      }
-    ],
+    subMenus: [],
   },
 
   {
