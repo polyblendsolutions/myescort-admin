@@ -47,7 +47,13 @@
   grid-template-columns: 24% 74%;
   justify-content: space-between;
 }
-
+.link-hover{
+  cursor: pointer;
+}
+.link-hover:hover{
+  text-decoration: underline;
+  color: #F54DA3;
+}
 @media (min-width: 300px) and (max-width: 600px) {
   .grid-customer {
     grid-template-columns: 1fr;

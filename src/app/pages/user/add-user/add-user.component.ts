@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {UsersService} from '../../../services/common/users.service';
 import {Select} from 'src/app/interfaces/core/select';
+import { environment } from 'src/environments/environment';
 
 interface AccessOption {
   name: string;
@@ -52,6 +53,7 @@ export class AddUserComponent implements OnInit {
 
   // Store Data
   id?: string;
+  shortId: string;
   user?: User;
 
 
@@ -104,8 +106,12 @@ export class AddUserComponent implements OnInit {
 
   private setFormValue() {
     this.dataForm.patchValue(this.user);
+    this.shortId = {...this.user}["shortId"]
   }
-
+  
+  shortIdRedirect(){
+    window.location.href = `${environment.clientProductURL}/ad-details/${this.shortId}`
+  }
   onSubmit() {
     if (this.dataForm.invalid) {
 

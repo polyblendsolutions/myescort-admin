@@ -13,6 +13,9 @@ export const environment = {
   apiBaseLink: 'https://api.ogmedia.dk',
   ftpBaseLink: 'https://api.ogmedia.dk',
 
+  clientProductURL: 'https://ogmedia.dk',
+
+
   appBaseUrl: '/',
   userBaseUrl: '/',
   userProfileUrl: '/my-profile',

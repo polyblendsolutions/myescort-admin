@@ -52,7 +52,7 @@
       </div>
 
 
-      <div class="div-one">
+      <div class="div-one" *ngIf="!id">
 
         <div class="from">
           <mat-label>Password</mat-label>
@@ -62,7 +62,10 @@
           </mat-form-field>
         </div>
       </div>
-
+      <div class="div-one" *ngIf="id && shortId">
+        <div></div>
+        <div (click)="shortIdRedirect()" class="link-hover">Previous Add</div>
+      </div>
 
     </div>
     <div class="btn">
