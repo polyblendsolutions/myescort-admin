@@ -162,7 +162,9 @@ export class AllProductComponent implements OnInit {
             threeMonth: 1,
             sixMonth: 1,
             twelveMonth: 1,
-            isFeatured: 1,
+            isFeatured: 1,           
+            isVipStatusActive: 1,
+            user: 1
           };
 
           const filterData: FilterData = {
@@ -246,7 +248,8 @@ export class AllProductComponent implements OnInit {
       isFeatured: 1,
       isRegion: 1,
       division: 1,
-      status: 1
+      status: 1,            
+      isVipStatusActive: 1
     };
 
     const filter: FilterData = {
@@ -347,13 +350,6 @@ export class AllProductComponent implements OnInit {
           this.spinner.hide();
           if (res.success) {
             // Get Data array
-            const selectedProduct = [];
-            this.selectedIds.forEach((id) => {
-              const fData = this.products.find((data) => data._id === id);
-              if (fData) {
-                selectedProduct.push(fData);
-              }
-            });
             this.selectedIds = [];
             this.uiService.success(res.message);
             // fetch Data
@@ -545,11 +541,43 @@ export class AllProductComponent implements OnInit {
       });
   }
 
+  getExpireDate(date:string) {
+    const currentDate = new Date(date);
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    return currentDate.toISOString()
+  }
+
+  deleteProduct(productId: string){
+    this.productService.deleteProductById(productId).subscribe({
+      next: (res) => {
+        this.spinner.hide();
+        if (res.success) {
+          // Get Data array
+          this.selectedIds = [];
+          this.uiService.success(res.message);
+          // fetch Data
+          if (this.currentPage > 1) {
+            this.router.navigate([], {queryParams: {page: 1}});
+          } else {
+            this.getAllProduct();
+          }
+        } else {
+          this.uiService.warn(res.message);
+        }
+      },
+      error: (error) => {
+        this.spinner.hide();
+        console.log(error);
+      }
+    });
+    
+  }
+
   /**
    * COMPONENT DIALOG VIEW
    * openConfirmDialog()
    */
-  public openConfirmDialog(type: 'edit' | 'delete', data: any) {
+  public openConfirmDialog(type: 'edit' | 'delete' | 'deleteSingle', data: any) {
     switch (type) {
       case 'edit': {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -582,6 +610,23 @@ export class AllProductComponent implements OnInit {
         });
         break;
       }
+
+      case 'deleteSingle': {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          maxWidth: '400px',
+          data: {
+            title: 'Confirm Delete',
+            message: 'Are you sure you want delete this single data?',
+          },
+        });
+        dialogRef.afterClosed().subscribe((dialogResult) => {
+          if (dialogResult) {
+            this.deleteProduct(data);
+          }
+        });
+        break;
+      }
+
       default: {
         break;
       }

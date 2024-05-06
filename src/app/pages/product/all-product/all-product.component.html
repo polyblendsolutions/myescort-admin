@@ -95,11 +95,14 @@
         <th class="t-checkbox">
           <mat-checkbox #matCheckbox (change)="onAllSelectChange($event)"></mat-checkbox>
         </th>
+        <th>Author</th>
         <th>Title/Name</th>
         <th>Category</th>
         <th>Region</th>
         <th>Status</th>
-        <th>Region Show</th>
+        <th>VIP Status</th>
+        <th>Created At</th>
+        <th>Expires On</th>
         <th>Actions</th>
       </tr>
       <tr
@@ -108,11 +111,14 @@
           <mat-checkbox class="t-mat-checkbox" [(ngModel)]="data.select"
                         (ngModelChange)="onCheckChange($event, i, data._id)"></mat-checkbox>
         </td>
+        <td>{{data.user.name || "N/A"}}</td>
         <td>{{data.name}}</td>
         <td>{{data.category?.name}}</td>
         <td>{{data.division?.name}}</td>
         <td [style.color]="data.status === 'publish' ? 'green' : 'red'">{{data.status | titlecase}}</td>
-        <td [style.color]="data.isRegion  ? 'green' : 'red'">{{data.isRegion ? 'Yes' : 'No'}}</td>
+        <td [style.color]="data.isVipStatusActive  ? 'green' : 'red'">{{data.isVipStatusActive ? 'Yes' : 'No'}}</td>
+        <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
+        <td>{{ data.publishDate ? (getExpireDate(data.publishDate) | date:'dd-MM-yyyy') : "N/A" }}</td>
         <td class="td-action">
           <button [disabled]="data._id === adminId || !checkEditPermission"
                   [routerLink]="['../', 'edit-product', data._id]" mat-mini-fab matTooltip="Edit">
@@ -121,6 +127,10 @@
           <button style="margin-left: 5px;" mat-mini-fab color="primary" (click)="openExternalUrl(data._id)"  matTooltip="View">
             <mat-icon>visibility</mat-icon>
         </button>
+          <button style="margin-left: 5px;" [disabled]="data._id === adminId || !checkEditPermission"
+          (click)="openConfirmDialog('deleteSingle',data._id)" mat-mini-fab matTooltip="Edit">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </tr>
     </table>
