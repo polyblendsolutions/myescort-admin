@@ -15,7 +15,6 @@ export const environment = {
 
   clientProductURL: 'https://ogmedia.dk',
 
-
   appBaseUrl: '/',
   userBaseUrl: '/',
   userProfileUrl: '/my-profile',
