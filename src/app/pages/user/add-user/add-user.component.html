@@ -66,6 +66,12 @@
         <div></div>
         <div (click)="shortIdRedirect()" class="link-hover">Previous Add</div>
       </div>
+      <div class="div-one" *ngIf="id">
+        <div></div>
+        <div class="from">
+          <mat-label>Vip Status: {{user?.subscriptionId ? "Yes" : "No"}}</mat-label>
+        </div>
+      </div>
 
     </div>
     <div class="btn">
