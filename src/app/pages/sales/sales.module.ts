@@ -22,7 +22,6 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { ProductVariationDialogComponent } from './product-variation-dialog/product-variation-dialog.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { ShippingChargeComponent } from './shipping-charge/shipping-charge.component';
 
 
 @NgModule({
@@ -33,7 +32,6 @@ import { ShippingChargeComponent } from './shipping-charge/shipping-charge.compo
     OrderDetailsComponent,
     ProductVariationDialogComponent,
     TransactionsComponent,
-    ShippingChargeComponent
   ],
   imports: [
     CommonModule,
